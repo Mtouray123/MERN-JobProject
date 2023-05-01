@@ -2,7 +2,21 @@ const Job = require('../../models/Jobs');
 
 async function index(req, res) {
     try {
-        const jobs = await Job.find({});
+        let query = {};
+
+        // Check if there is a search query in the request parameters
+        if (req.query.search) {
+            // Use a regular expression to perform a case-insensitive search on the title and description fields
+            const regex = new RegExp(req.query.search, 'i');
+            query = {
+                $or: [
+                    { title: regex },
+                    { description: regex }
+                ]
+            };
+        }
+
+        const jobs = await Job.find(query);
         res.status(200).json(jobs);
     } catch (error) {
         res.status(400).json({ error: error.message });
