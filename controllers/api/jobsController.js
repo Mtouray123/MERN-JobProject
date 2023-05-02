@@ -1,92 +1,66 @@
-const Job = require('../../models/Jobs');
+const Job = require('../../models/jobs');
 
-async function index(req, res) {
+module.exports = {
+  // GET /api/jobs
+  async getAllJobs(req, res) {
     try {
-        let query = {};
-
-        // Check if there is a search query in the request parameters
-        if (req.query.search) {
-            // Use a regular expression to perform a case-insensitive search on the title and description fields
-            const regex = new RegExp(req.query.search, 'i');
-            query = {
-                $or: [
-                    { title: regex },
-                    { description: regex }
-                ]
-            };
-        }
-
-        const jobs = await Job.find(query);
-        res.status(200).json(jobs);
+      const jobs = await Job.find({});
+      return res.json(jobs);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      return res.status(500).json({ error: error.toString() });
     }
-}
+  },
 
-async function create(req, res) {
+  // POST /api/jobs
+  async createJob(req, res) {
     try {
-        const job = await Job.create(req.body);
-        res.status(201).json(job);
+      const job = await Job.create(req.body);
+      return res.status(201).json(job);
     } catch (error) {
-        if (error.name === 'ValidationError') {
-            res.status(400).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: 'Server error' });
-        }
+      return res.status(500).json({ error: error.toString() });
     }
-}
+  },
 
-async function show(req, res) {
+  // GET /api/jobs/:id
+  async getJobById(req, res) {
     try {
-        const job = await Job.findById(req.params.id);
-        if (!job) throw new Error('Job not found');
-        res.status(200).json(job);
+      const job = await Job.findById(req.params.id);
+      if (!job) {
+        return res.status(404).json({ message: 'Job not found' });
+      }
+      return res.json(job);
     } catch (error) {
-        res.status(404).json({ error: error.message });
+      return res.status(500).json({ error: error.toString() });
     }
-}
+  },
 
-async function update(req, res) {
+  // PUT /api/jobs/:id
+  async updateJob(req, res) {
     try {
-        const job = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-        if (!job) throw new Error('Job not found');
-        res.status(200).json(job);
+      const job = await Job.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      if (!job) {
+        return res.status(404).json({ message: 'Job not found' });
+      }
+      return res.json(job);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      return res.status(500).json({ error: error.toString() });
     }
-}
+  },
 
-async function destroy(req, res) {
+  // DELETE /api/jobs/:id
+  async deleteJob(req, res) {
     try {
-        const job = await Job.findByIdAndDelete(req.params.id);
-        if (!job) throw new Error('Job not found');
-        res.status(200).json(job);
+      const job = await Job.findByIdAndRemove(req.params.id);
+      if (!job) {
+        return res.status(404).json({ message: 'Job not found' });
+      }
+      return res.json({ message: 'Job deleted successfully' });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      return res.status(500).json({ error: error.toString() });
     }
-}
-
-// Export a middleware function that can be used by app.use()
-module.exports = (req, res, next) => {
-    switch (req.method) {
-        case 'GET':
-            if (req.params.id) {
-                show(req, res, next);
-            } else {
-                index(req, res, next);
-            }
-            break;
-        case 'POST':
-            create(req, res, next);
-            break;
-        case 'PUT':
-            update(req, res, next);
-            break;
-        case 'DELETE':
-            destroy(req, res, next);
-            break;
-        default:
-            res.status(400).json({ error: 'Invalid request method' });
-            break;
-    }
+  }
 };
