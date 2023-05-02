@@ -6,6 +6,7 @@ import NewOrderPage from './pages/NewOrderPage';
 import AuthPage from './pages/AuthPage';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import NavBar from './components/NavBar';
+import JobsList from './components/JobsList';
 
 import { getUser } from './utilities/users-service';
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path='/orders/new' element={ <NewOrderPage /> }/>
         <Route path='/orders' element={ <OrderHistoryPage /> }/>
+        <Route path="/jobs" element={<JobsList />} />
       </Routes>
       </>
      : 

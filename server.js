@@ -25,8 +25,13 @@ app.use(express.static(path.join(__dirname, 'build')));
 // checks if token was sent and sets a user data on the req (req.user)
 app.use(require('./config/checkToken'));
 
+// Route to render JobsList component
+app.get('/jobs', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
 // * All other routes
-app.use('/api/jobs', require('../controllers/api/jobsController'));
+app.use('/api/jobs', require('./controllers/api/jobsController'));
 app.use('/api/users', require('./routes/api/users'));
 
 

@@ -4,6 +4,8 @@ import { getAllJobs } from '../utilities/jobs-api';
 
 function JobsList() {
   const [jobs, setJobs] = useState([]);
+  const [jobTitle, setJobTitle] = useState('');
+  const [location, setLocation] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -13,8 +15,24 @@ function JobsList() {
     fetchData();
   }, []);
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/api/jobs/search?jobTitle=${jobTitle}&location=${location}`);
+      const jobsData = await response.json();
+      setJobs(jobsData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
+      <form onSubmit={handleSearch}>
+        <input type="text" placeholder="Job Title" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
+        <input type="text" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
+        <button type="submit">Search</button>
+      </form>
       <h1>Jobs List</h1>
       <table>
         <thead>
