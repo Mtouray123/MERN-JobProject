@@ -2,14 +2,9 @@ const mongoose = require('mongoose');
 
 
 const jobSchema = new mongoose.Schema({
-    jobTitle: {
+    title: {
       type: String,
       required: true,
-    },
-    salary: {
-      type: Number,
-      required: true,
-      min: 0,
     },
     description: {
       type: String,
@@ -19,10 +14,11 @@ const jobSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    applicationDeadline: {
-      type: Date,
+    salary: {
+      type: Number,
       required: true,
-    },
+      min: 0,
+    }
   }, {
     timestamps: true,
   });
