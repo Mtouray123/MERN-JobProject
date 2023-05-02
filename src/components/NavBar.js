@@ -6,11 +6,18 @@ function NavBar({ user, setUser }) {
     logOut();
     setUser(null);
   };
+  
+  const navBarStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginRight: "20px"
+  };
+  
   return (
-    <nav>
-      <Link to="/orders">Order History</Link>
+    <nav style={navBarStyle}>
+      <Link to="/orders">Job History</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link> <span>Welcome, {user.name}</span>{" "}
+      <Link to="/orders/new">Job Search</Link> <span>Welcome, {user.name}</span>{" "}
       <Link to="" onClick={handleLogOut}>
         Logout
       </Link>
