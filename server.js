@@ -5,7 +5,6 @@ const path = require('path'); // node module
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
-
 const app = express();
 // development port: 3001
 // in production we'll a PORT number set in the environment variables
@@ -25,13 +24,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 // checks if token was sent and sets a user data on the req (req.user)
 app.use(require('./config/checkToken'));
 
-// Route to render JobsList component
-app.get('/jobs', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-
 // * All other routes
-app.use('/api/jobs', require('./controllers/api/jobsController'));
+app.use('/api/jobs', require('./routes/api/jobs'));
 app.use('/api/users', require('./routes/api/users'));
 
 

@@ -6,7 +6,8 @@ import NewOrderPage from './pages/NewOrderPage';
 import AuthPage from './pages/AuthPage';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import NavBar from './components/NavBar';
-import JobsList from './components/JobsList';
+import SubmitJob from './components/submitJob';
+import ViewJobs from './components/viewJobs';
 
 import { getUser } from './utilities/users-service';
 
@@ -21,13 +22,15 @@ function App() {
       <>
       <NavBar user={user} setUser={setUser}/>
       <Routes>
-        <Route path='/orders/new' element={ <NewOrderPage /> }/>
-        <Route path='/orders' element={ <OrderHistoryPage /> }/>
-        <Route path="/jobs" element={<JobsList />} />
+        <Route path='/orders/new' element={<NewOrderPage />} />
+        <Route path='/orders' element={<OrderHistoryPage />} />
+        <Route path='/jobs/new' element={<SubmitJob />} />
+        <Route path='/jobs' element={<ViewJobs />} />
       </Routes>
       </>
      : 
       <AuthPage setUser={setUser}/>
+      
       }
     </main>
   );

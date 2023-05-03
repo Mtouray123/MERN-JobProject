@@ -1,32 +1,33 @@
-import { getToken } from './users-service';
+import { sendRequest } from './jobs-service';
+import axios from 'axios';
 
 const BASE_URL = '/api/jobs';
 
-export async function getAllJobs() {
-  const response = await fetch(BASE_URL);
-  return response.json();
+export function getAllJobs() {
+  return sendRequest(BASE_URL);
 }
 
-export async function addJob(jobData) {
-  const token = getToken();
-  const response = await fetch(BASE_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(jobData),
-  });
-  return response.json();
+export function getJobById(id) {
+  return sendRequest(`${BASE_URL}/${id}`);
 }
 
-export async function deleteJob(jobId) {
-  const token = getToken();
-  const response = await fetch(`${BASE_URL}/${jobId}`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.json();
+export function createJob(jobData) {
+  return sendRequest(BASE_URL, 'POST', jobData);
 }
+
+export function updateJob(id, jobData) {
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', jobData);
+}
+
+export function deleteJob(id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}
+
+export const createJobApplicant = async (jobApplicantData) => {
+  try {
+    const response = await axios.post('/api/jobapplicants', jobApplicantData);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
