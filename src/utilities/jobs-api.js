@@ -1,5 +1,4 @@
 import { sendRequest } from './jobs-service';
-import axios from 'axios';
 
 const BASE_URL = '/api/jobs';
 
@@ -22,12 +21,3 @@ export function updateJob(id, jobData) {
 export function deleteJob(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
 }
-
-export const createJobApplicant = async (jobApplicantData) => {
-  try {
-    const response = await axios.post('/api/jobapplicants', jobApplicantData);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
