@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import JobApplicantForm from "../components/jobApplicantForm"
+// import { updateJobApplicant } from "../utilities/jobApp-api";
 
 function OrderHistoryPage() {
   const [jobs, setJobs] = useState([]);
@@ -21,6 +23,16 @@ function OrderHistoryPage() {
     const response = await axios.put(`/api/jobs/${id}`, updatedJob);
     setJobs(jobs.map((job) => (job._id === id ? response.data : job)));
   };
+
+  const handleShowJobApplicantForm = () => {
+    setJobApplicantFormVisible(true);
+  };
+
+  const handleHideJobApplicantForm = () => {
+    setJobApplicantFormVisible(false);
+  };
+
+  const [jobApplicantFormVisible, setJobApplicantFormVisible] = useState(false);
 
   return (
     <div>
@@ -44,14 +56,16 @@ function OrderHistoryPage() {
               <td>{job.salary}</td>
               <td>
                 <button onClick={() => handleDeleteJob(job._id)}>Delete</button>
-                <button onClick={() => handleUpdateJob(job._id, { salary: "" })}>Update</button>
+                <button onClick={handleShowJobApplicantForm}>Apply</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {jobApplicantFormVisible && <JobApplicantForm onHide={handleHideJobApplicantForm} />}
     </div>
   );
+
 }
 
 export default OrderHistoryPage;
