@@ -8,6 +8,22 @@ Job Portal is a MERN Stack based web app which helps in streamlining the flow of
 
 [![My Skills](https://skills.thijs.gg/icons?i=mongodb,express,react,nodejs)](https://skills.thijs.gg)
 
+#Dependencies
+- Frontend
+  - Axios
+  - React-router-dom
+
+- Backend
+  - bcrypt
+  - dotenv
+  - express
+  - jsonwebtoken
+  - mongoose
+  
+#Trello Board
+
+#
+
 
 
 
