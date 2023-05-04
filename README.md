@@ -5,6 +5,7 @@ Job Portal is a MERN Stack based web app which helps in streamlining the flow of
 #Trello Board
 (https://trello.com/b/kKEd9Bgj/jobmern-project)
 
+#ERD
 ![Screenshot 2023-05-04 100805](https://user-images.githubusercontent.com/122950634/236232808-ca607594-9516-4aae-9256-f62d20fb3a01.png)
 
 #WireFrame
