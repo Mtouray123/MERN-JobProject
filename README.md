@@ -3,7 +3,7 @@
 Job Portal is a MERN Stack based web app which helps in streamlining the flow of job application process. It allows users to search for available jobs in . In this web app, login session are persistent and REST APIs are securely protected by JWT token verification. After logging in, the user can create, apply, delete and update job postings and application forms. 
 
 #Trello Board
-https://wireframe.cc/pro/edit/653636
+(https://trello.com/b/kKEd9Bgj/jobmern-project)
 
 #WireFrame
 ![Screenshot 2023-05-04 094653](https://user-images.githubusercontent.com/122950634/236225526-6feeaf4a-6d5f-4c3a-b50e-53feb96f0886.png)
