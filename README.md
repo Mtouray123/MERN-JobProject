@@ -38,6 +38,7 @@ Job Portal is a MERN Stack based web app which helps in streamlining the flow of
 - Allow the user to view and update their application relating to the corresponding job posting.
 - Allow user to upload resume
 - Allow user to upload profile picture
+- Implement a prompt that lets user know Application was successful
 - Implement more fields in the submit Job and application forms
 
 
