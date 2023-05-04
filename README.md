@@ -19,8 +19,6 @@ Job Portal is a MERN Stack based web app which helps in streamlining the flow of
   - express
   - jsonwebtoken
   - mongoose
-  
-#Trello Board
 
 #Unresolved Issues
 - CRUD UPDATE on job search posting and application!
@@ -31,6 +29,8 @@ Job Portal is a MERN Stack based web app which helps in streamlining the flow of
 - Allow user to upload resume
 - Allow user to upload profile picture
 - Implement more fields in the submit Job and application forms
+
+#Trello Board
 
 #Sources
 
