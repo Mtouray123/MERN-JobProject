@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import JobApplicantForm from "../components/JobApplicantForm";
+import JobApplicantForm from "../components/jobApplicantForm";
 // import { updateJobApplicant } from "../utilities/jobApp-api";
 
 function OrderHistoryPage() {

@@ -8,6 +8,8 @@ import OrderHistoryPage from './pages/OrderHistoryPage';
 import NavBar from './components/NavBar';
 import SubmitJob from './components/submitJob';
 import ViewJobs from './components/viewJobs';
+import JobApplicantForm from './components/jobApplicantForm';
+import JobDetails from './pages/JobDetails';
 
 import { getUser } from './utilities/users-service';
 
@@ -26,6 +28,7 @@ function App() {
         <Route path='/orders' element={<OrderHistoryPage />} />
         <Route path='/jobs/new' element={<SubmitJob />} />
         <Route path='/jobs' element={<ViewJobs />} />
+        <Route path="/jobs/:id/apply" element={<JobApplicantForm />} />
       </Routes>
       </>
      : 

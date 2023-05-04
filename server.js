@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(require('./config/checkToken'));
 
 // * All other routes
+app.use('/api/jobApplicant', require('./routes/api/jobApplicant'));
 app.use('/api/jobs', require('./routes/api/jobs'));
 app.use('/api/users', require('./routes/api/users'));
 
